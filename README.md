@@ -95,22 +95,35 @@ Prerequisites
 Repository layout (relevant files)
 ----------------------------------
 
-`Financial-Document-Analyzer/ 
+`Financial-Document-Analyzer/  
 
-├── financial-document-analyzer-debug/    # Backend code
-│   ├── agents.py
-│   ├── main.py          # FastAPI API used by frontend
+├── financial-document-analyzer-debug/    # Backend code 
+
+│   ├── agents.py 
+
+│   ├── main.py          # FastAPI API used by frontend 
+
 │   ├── task.py
-│   ├── tasks.py         # worker-side tasks for RQ
-│   ├── tools.py
-│   ├── worker.py        # starts RQ worker
-│   ├── requirements.txt
-│   ├── .env             # not checked in
-│   └── data/            # uploaded files (created at runtime)
-├── frontend/           # React frontend (Vite)
-│   ├── src/
-│   │   ├── App.jsx
-│   └── package.json
+│   ├── tasks.py         # worker-side tasks for RQ 
+
+│   ├── tools.py 
+
+│   ├── worker.py        # starts RQ worker 
+
+│   ├── requirements.txt 
+
+│   ├── .env             # not checked in 
+
+│   └── data/            # uploaded files (created at runtime) 
+
+├── frontend/           # React frontend (Vite) 
+
+│   ├── src/ 
+
+│   │   ├── App.jsx 
+
+│   └── package.json 
+
 └── README.md`
 
 > **Note:** Your repo path may differ slightly --- adjust commands accordingly.
@@ -504,12 +517,6 @@ Contributing
 
 4.  Submit a pull request with a clear description of changes and rationale.
 
-* * * * *
-
-License
--------
-
-(Choose an appropriate license --- not provided in this repository by default.)
 
 * * * * *
 
