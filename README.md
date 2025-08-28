@@ -98,11 +98,8 @@ Repository layout (relevant files)
 `Financial-Document-Analyzer/  
 
 ├── financial-document-analyzer-debug/    # Backend code 
-
 │   ├── agents.py 
-
 │   ├── main.py          # FastAPI API used by frontend 
-
 │   ├── task.py
 │   ├── tasks.py         # worker-side tasks for RQ 
 
@@ -136,20 +133,23 @@ Quick start (short)
 1.  Start Redis server.
 
 2.  Start backend API:
-
-    `cd financial-document-analyzer-debug
-    uvicorn main:app --host 0.0.0.0 --port 8000 --reload`
+   ```bash
+    cd financial-document-analyzer-debug
+    uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   ```
 
 3.  Start worker (new terminal):
-
-    `cd financial-document-analyzer-debug
-    python worker.py`
+    ```bash
+    cd financial-document-analyzer-debug
+    python worker.py
+    ```
 
 4.  Start frontend (new terminal):
-
-    `cd frontend
+    ```bash
+    cd frontend
     npm install
-    npm run dev`
+    npm run dev
+    ```
 
 5.  Open `http://localhost:5173` (or `http://localhost:3000` if configured) and upload PDF.
 
@@ -159,67 +159,78 @@ Full installation & setup (detailed)
 ------------------------------------
 
 ### 1) Clone repository
-
-`git clone https://github.com/sandeepgoudmacha/Financial-Document-Analyzer.git
-cd Financial-Document-Analyzer`
+```bash
+git clone https://github.com/sandeepgoudmacha/Financial-Document-Analyzer.git
+cd Financial-Document-Analyzer
+```
 
 ### 2) Backend (Python) setup
-
-`cd financial-document-analyzer-debug
+```bash
+cd financial-document-analyzer-debug
+```
 
 # create venv
+```bash
 python3 -m venv venv
 source venv/bin/activate    # windows: venv\Scripts\activate
-
+```
+```bash
 # install python deps
-pip install -r requirements.txt`
+pip install -r requirements.txt
+```
 
 Create `.env` file in the backend folder:
-
-`GOOGLE_API_KEY=your_google_api_key_here
+```bash
+GOOGLE_API_KEY=your_google_api_key_here
 SERPER_API_KEY=your_serper_api_key_here
 REDIS_HOST=localhost
 REDIS_PORT=6379
-REDIS_DB=0`
+REDIS_DB=0
+```
 
 > Keep keys secret and **never** commit `.env` to GitHub.
 
 ### 3) Redis
 
 **Ubuntu / Debian**
-
-`sudo apt update
+```bash
+sudo apt update
 sudo apt install redis-server
 sudo systemctl enable --now redis
-redis-cli ping   # should output: PONG`
+redis-cli ping   # should output: PONG
+```
 
 **macOS (Homebrew)**
-
-`brew install redis
+```bash
+brew install redis
 brew services start redis
-redis-cli ping`
+redis-cli ping
+```
 
 **Windows**
 
 Use WSL to run Redis or use a Docker container:
-
-`# using Docker
-docker run -p 6379:6379 --name redis -d redis:7`
+```bash
+# using Docker
+docker run -p 6379:6379 --name redis -d redis:7
+```
 
 ### 4) Run the backend API
-
-`# from financial-document-analyzer-debug
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload`
+```bash
+# from financial-document-analyzer-debug
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
 Visit API docs: `http://localhost:8000/docs`
 
 ### 5) Start worker (RQ)
 
 Open a second terminal, activate venv and start worker:
-
-`cd financial-document-analyzer-debug
+```bash
+cd financial-document-analyzer-debug
 source venv/bin/activate
-python worker.py`
+python worker.py
+```
 
 The worker picks up jobs queued into Redis.
 
@@ -242,11 +253,12 @@ node -v   # should be 20.x
 npm -v`
 
 **Install frontend dependencies and run**
-
-`cd frontend
+```bash
+cd frontend
 npm install
 npm run dev
-### Vite will print local URL (e.g. http://localhost:5173)`
+### Vite will print local URL (e.g. http://localhost:5173)
+```
 
 * * * * *
 
