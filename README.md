@@ -95,7 +95,8 @@ Prerequisites
 Repository layout (relevant files)
 ----------------------------------
 
-`Financial-Document-Analyzer/
+`Financial-Document-Analyzer/ 
+
 ├── financial-document-analyzer-debug/    # Backend code
 │   ├── agents.py
 │   ├── main.py          # FastAPI API used by frontend
