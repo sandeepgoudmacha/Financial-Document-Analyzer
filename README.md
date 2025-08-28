@@ -98,9 +98,13 @@ Repository layout (relevant files)
 `Financial-Document-Analyzer/  
 
 ├── financial-document-analyzer-debug/    # Backend code 
+
 │   ├── agents.py 
+
 │   ├── main.py          # FastAPI API used by frontend 
+
 │   ├── task.py
+
 │   ├── tasks.py         # worker-side tasks for RQ 
 
 │   ├── tools.py 
@@ -169,7 +173,7 @@ cd Financial-Document-Analyzer
 cd financial-document-analyzer-debug
 ```
 
-# create venv
+### create venv
 ```bash
 python3 -m venv venv
 source venv/bin/activate    # windows: venv\Scripts\activate
@@ -298,17 +302,20 @@ API documentation (endpoints & examples)
 
 **Response (processing)**:
 
-`{
+```bash
+{
   "status": "processing",
   "message": "Job enqueued for analysis.",
   "job_id": "<file_hash>"
-}`
+}
+```
 
 **cURL example**
-
-`curl -X POST "http://localhost:8000/upload"\
+```bash
+curl -X POST "http://localhost:8000/upload"\
   -F "file=@sample.pdf"\
-  -F "query=profit shares"`
+  -F "query=profit shares"
+```
 
 > If your frontend uses `/analyze` endpoint, either change the frontend to call `/upload` or add an alias endpoint.
 
@@ -321,29 +328,35 @@ API documentation (endpoints & examples)
 **Responses**
 
 -   Not found:
-
-`{ "status": "not_found", "message": "Job not found." }`
+```bash
+{ "status": "not_found",
+ "message": "Job not found."
+}
+```
 
 -   Processing:
-
-`{
+```bash
+{
   "status": "processing",
   "message": "Job is being processed.",
   "started_at": "...",
   "file_name": "sample.pdf"
-}`
+}
+```
 
 -   Finished (example):
-
-`{
+```bash
+{
   "status": "finished",
   "result": "Long textual or structured result stored by worker",
   "completed_at": "2025-08-28T17:20:31.000000"
-}`
+}
+```
 
 **cURL example**
-
-`curl -X GET "http://localhost:8000/status/<file_hash>" -H "accept: application/json"`
+```bash
+curl -X GET "http://localhost:8000/status/<file_hash>" -H "accept: application/json"
+```
 
 * * * * *
 
@@ -474,16 +487,17 @@ Expected output examples (sample JSON)
 --------------------------------------
 
 **When job is finished** --- `/status/{job_id}` returns:
-
-`{
+```bash
+{
   "status": "finished",
   "result": "Final analysis text (or JSON) returned by CrewAI agents",
   "completed_at": "2025-08-28T18:14:46.123456"
-}`
+}
+```
 
 **If you return structured JSON from agents**, a more helpful response could be:
-
-`{
+```bash
+{
   "status": "finished",
   "result": {
     "summary": "Tesla Q2 2025: revenues down 12% YoY; operating income down 42%...",
@@ -497,7 +511,8 @@ Expected output examples (sample JSON)
     ]
   },
   "completed_at": "2025-08-28T18:14:46.123456"
-}`
+}
+```
 
 * * * * *
 
@@ -552,5 +567,6 @@ Final notes & checklist for you (copy-apply)
     -   Frontend (`npm run dev`)
 
 5.  **Check Redis manually** to confirm worker saved output:
-
-    `redis-cli HGETALL finance_result:<file_hash>`
+```bash
+    redis-cli HGETALL finance_result:<file_hash>
+```
