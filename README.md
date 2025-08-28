@@ -235,7 +235,7 @@ If you encounter Node errors while creating / installing the frontend (e.g. `Syn
 
 `# Install nvm (if not installed)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-# Restart shell, then
+### Restart shell, then
 nvm install 20
 nvm use 20
 node -v   # should be 20.x
@@ -246,7 +246,7 @@ npm -v`
 `cd frontend
 npm install
 npm run dev
-# Vite will print local URL (e.g. http://localhost:5173)`
+### Vite will print local URL (e.g. http://localhost:5173)`
 
 * * * * *
 
